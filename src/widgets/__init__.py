@@ -1,0 +1,1 @@
+"""SmogNet UI widget package."""
