@@ -21,6 +21,7 @@ import numpy as np
 
 from widgets.button import SmogButton
 from widgets.image_container import ImageContainer
+from widgets.label import SmogLabel
 
 from src.inference.pipeline import Pipeline
 from src.inference.object_detector import CLASSES as DET_CLASSES
@@ -124,12 +125,10 @@ class SmogNetWindow(QMainWindow):
             layout.addWidget(btn)
 
 
-        self.timer_box = QLineEdit("Run something...")
-        self.timer_box.setReadOnly(True)
+        self.timer_box = SmogLabel("Run something...")
         layout.addWidget(self.timer_box)
 
-        self.output_box = QLineEdit("")
-        self.output_box.setReadOnly(True)
+        self.output_box = SmogLabel("")
         layout.addWidget(self.output_box)
 
         return panel
@@ -204,7 +203,7 @@ class SmogNetWindow(QMainWindow):
             elapsed = time.perf_counter() - start
             # show results
             self.output_box.setText(label)
-            self.timer_box.setText(f"{elapsed:.3f}s")
+            self.timer_box.setText(f"Time Taken: {elapsed:.3f}s")
         finally:
             self._set_buttons_enabled(True)
 
@@ -260,7 +259,7 @@ class SmogNetWindow(QMainWindow):
                 draw.text((x1 + 2, max(y1 - 14, 0)), f"{DET_CLASSES[cls_idx]} {conf:.2f}", fill=color)
 
             self.main_container.load_image_from_array(np.array(canvas))
-            self.timer_box.setText(f"{elapsed:.3f}s")
+            self.timer_box.setText(f"Time Taken: {elapsed:.3f}s")
         finally:
             self._set_buttons_enabled(True)
 
@@ -276,7 +275,7 @@ class SmogNetWindow(QMainWindow):
             out = self.pipeline.run_pipeline(img)
             elapsed = time.perf_counter() - start
             self.main_container.load_image_from_array(out)
-            self.timer_box.setText(f"{elapsed:.3f}s")
+            self.timer_box.setText(f"Time Taken: {elapsed:.3f}s")
         finally:
             self._set_buttons_enabled(True)
 
