@@ -18,11 +18,18 @@ The pipeline (`src/inference/pipeline.py`) handles coordinate rescaling and anno
 
 ## Quick Start
 
-### Running
+### Setup
+Clone the repository and download weights from the [releases page](https://github.com/hamdannawaz582/SmogNet/releases) and put them in `models/`.
+Download dependencies with:
 
 ```bash
 uv sync
 uv pip install -e .
+```
+
+### Running
+
+```bash
 uv run main.py
 ```
 
