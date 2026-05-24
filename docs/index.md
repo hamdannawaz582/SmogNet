@@ -44,7 +44,7 @@ def main():
 
 ## API Reference
 
-See the sidebar for full class and method documentation
+See the sidebar for full class and method documentation on both the Inference and GUI modules.
 
 ## Layout
 
